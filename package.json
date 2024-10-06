@@ -1,0 +1,39 @@
+{
+	"name": "hack.auth",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"main": "dist/index.js",
+	"license": "MIT",
+	"dependencies": {
+		"@prisma/client": "^5.20.0",
+		"@slack/bolt": "^3.22.0",
+		"axios": "^1.7.7",
+		"dotenv": "^16.4.5",
+		"express": "^4.21.0",
+		"express-file-routing": "^3.0.3",
+		"express-handlebars": "^8.0.1",
+		"express-session": "^1.18.0",
+		"nanoid": "^5.0.7",
+		"prisma-field-encryption": "^1.6.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.3",
+		"@sapphire/ts-config": "^5.0.1",
+		"@types/express": "^5.0.0",
+		"@types/express-session": "^1.18.0",
+		"@types/node": "^22.7.4",
+		"autoprefixer": "^10.4.20",
+		"postcss": "^8.4.47",
+		"postcss-cli": "^11.0.0",
+		"prisma": "^5.20.0",
+		"tailwindcss": "^3.4.13",
+		"typescript": "^5.6.2"
+	},
+	"scripts": {
+		"migrations:encrypted": "node dist/encryptionMigrations/index.js",
+		"start": "node .",
+		"build:ts": "tsc",
+		"build:tailwind": "postcss public/stylesheets/tailwind.css -o public/stylesheets/style.css"
+	}
+}

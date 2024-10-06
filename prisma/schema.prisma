@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Sets up encrypted field migrations for later :)
+// generator fieldEncryptionMigrations {
+//  provider = "prisma-field-encryption"
+//  output = "../src/encryptionMigrations/"
+// }
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  first_name String
+  last_name String
+  preferred_first_name String?
+  preffered_last_name String?
+
+  email String @unique
+
+  date_born Int
+  month_born Int
+  year_born Int
+  sessions Session[]
+}
+
+model Session {
+  // Session Metadata
+  id Int @id @default(autoincrement())
+  cookie String /// @encrypted
+  cookie_hash String? @unique /// @encryption:hash(cookie)
+  user_agent String
+  ip String /// @encrypted
+  authenticated Boolean @default(false)
+
+  // Slack Access Tokens
+  slack_access_token String? /// @encrypted
+  slack_user_id String?
+  userId Int?
+  user User? @relation(fields: [userId], references: [id])
+}
+
+model OauthApplication {
+  id String @id @default(uuid())
+  client_id String @default(uuid())
+  client_secret String /// @encrypted
+  client_secret_hash String @unique /// @encryption:hash(client_secret)
+  owner_slack_id String
+  redirect_uri String
+}

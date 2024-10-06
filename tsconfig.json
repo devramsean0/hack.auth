@@ -1,0 +1,16 @@
+{
+	"extends": [
+		"@sapphire/ts-config",
+		"@sapphire/ts-config/bundler",
+		"@sapphire/ts-config/extra-strict",
+		"@sapphire/ts-config/decorators",
+		"@sapphire/ts-config/verbatim"
+	],
+	"compilerOptions": {
+		"rootDir": "src",
+		"outDir": "dist",
+		"incremental": true,
+		"verbatimModuleSyntax": false
+	},
+	"include": ["src"]
+}
