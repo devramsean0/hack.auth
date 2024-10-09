@@ -1,4 +1,5 @@
 dist/
 node_modules/
-public/stylesheets/public.css
+public/stylesheets/style.css
 tsconfig.tsbuildinfo
+.env

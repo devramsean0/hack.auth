@@ -6,11 +6,10 @@ import createRouter from "express-file-routing";
 import { PrismaClient } from "@prisma/client";
 import { fieldEncryptionExtension } from "prisma-field-encryption";
 import SlackBolt from "@slack/bolt";
-
 // Express.js Shenanigans
 const app = express();
 const port = Number(process.env.PORT) || 3000;
-
+console.log("Hello World! 1");
 app.use(express.json());
 // Configure sessions
 app.use(
@@ -26,10 +25,13 @@ app.engine("handlebars", handlebars.engine());
 app.set("view engine", "handlebars");
 app.set("views", `${process.cwd()}/views`);
 app.use(express.static(`${process.cwd()}/public`));
-
-await createRouter(app, {
-	directory: `${process.cwd()}/dist/routes`,
-});
+console.log("Hello World! 1.75");
+(async () => {
+	await createRouter(app, {
+		directory: `${process.cwd()}/dist/routes/`,
+	});
+	console.log("Loaded Routes");
+})();
 // Connect to DB
 const prismaClient = new PrismaClient();
 // Extend to add encryption

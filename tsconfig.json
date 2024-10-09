@@ -10,7 +10,8 @@
 		"rootDir": "src",
 		"outDir": "dist",
 		"incremental": true,
-		"verbatimModuleSyntax": false
+		"verbatimModuleSyntax": false,
+		"noEmit": false
 	},
 	"include": ["src"]
 }

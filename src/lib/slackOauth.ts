@@ -1,5 +1,5 @@
 // Helper functions for Slack Oauth
-export function slackGenAuthEndpoint() {
+export function slackGenAuthEndpoint(service: string): string {
 	// Grab client id, and redirect URL
 	const client_id = process.env.SLACK_CLIENT_ID;
 	const redirect_uri = process.env.SLACK_REDIRECT_URI;
@@ -10,7 +10,7 @@ export function slackGenAuthEndpoint() {
 		throw new SlackOauthError("SLACK_REDIRECT_URI must be a string");
 	}
 	const scopes = "users:read,users:read.email"; // Request scopes needed to grab email
-	return `https://slack.com/oauth/v2/authorize?client_id=${client_id}&user_scopes=${encodeURIComponent(scopes)}&redirect_uri=${encodeURIComponent(redirect_uri)}`;
+	return `https://slack.com/oauth/v2/authorize?client_id=${client_id}&scope=${encodeURIComponent(scopes)}&redirect_uri=${encodeURIComponent(redirect_uri)}&state=${service}`;
 }
 
 class SlackOauthError extends Error {}

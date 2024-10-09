@@ -20,41 +20,39 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
-  first_name String
-  last_name String
+  id                   Int     @id @default(autoincrement())
+  first_name           String
+  last_name            String
   preferred_first_name String?
-  preffered_last_name String?
+  preffered_last_name  String?
 
   email String @unique
 
-  date_born Int
+  date_born  Int
   month_born Int
-  year_born Int
-  sessions Session[]
+  year_born  Int
+  sessions   Session[]
+
+  connected_services String[] // List of connected services by their oauth client_id
 }
 
 model Session {
   // Session Metadata
-  id Int @id @default(autoincrement())
-  cookie String /// @encrypted
-  cookie_hash String? @unique /// @encryption:hash(cookie)
-  user_agent String
-  ip String /// @encrypted
+  id            Int     @id @default(autoincrement())
+  cookie        String  @unique
+  user_agent    String
+  ip            String /// @encrypted
   authenticated Boolean @default(false)
 
-  // Slack Access Tokens
-  slack_access_token String? /// @encrypted
-  slack_user_id String?
   userId Int?
-  user User? @relation(fields: [userId], references: [id])
+  user   User? @relation(fields: [userId], references: [id])
 }
 
 model OauthApplication {
-  id String @id @default(uuid())
-  client_id String @default(uuid())
-  client_secret String /// @encrypted
+  id                 String @id @default(uuid())
+  client_id          String @unique @default(uuid())
+  client_secret      String /// @encrypted
   client_secret_hash String @unique /// @encryption:hash(client_secret)
-  owner_slack_id String
-  redirect_uri String
+  owner_slack_id     String
+  redirect_uri       String
 }

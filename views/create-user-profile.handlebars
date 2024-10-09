@@ -1,0 +1,24 @@
+<p>
+    We collect this information to smooth over creation of accounts on other services,
+    By default we pass the preffered name to other services, but some may request legal (with extra scopes).
+</p>
+<form action="/create-user-profile" method="POST" class="flex flex-col">
+    <div>
+        <label for="legal_first_name">Legal First Name:</label>
+        <input type="text" id="legal_first_name" name="legal_first_name" required>
+    </div>
+    <div>
+        <label for="legal_last_name">Legal Last Name:</label>
+        <input type="text" id="legal_last_name" name="legal_last_name" required>
+    </div>
+    <label for="preffered_first_name">Preffered First Name:</label>
+    <input type="text" id="preffered_first_name" name="preffered_first_name" required>
+
+    <label for="preffered_last_name">Preffered Last Name:</label>
+    <input type="text" id="preffered_last_name" name="preffered_last_name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+  <button type="submit">Create Profile</button>
+</form>
